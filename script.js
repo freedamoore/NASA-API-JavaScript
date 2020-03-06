@@ -3,7 +3,7 @@ const year = sevenDaysAgo.getFullYear();
 const month = sevenDaysAgo.getMonth() + 1;
 const day = sevenDaysAgo.getDate();
 const startDate = `${year}-${month}-${day}`;
-const apiKey = <<insert your API KEY here>>;
+const apiKey = "eTA0IfKg7oy8Cx41GHeAsA1fc6ep4t2nkyMBgisM";
 const url = `https://api.nasa.gov/planetary/apod?start_date=${startDate}&api_key=${apiKey}`;
 
 // HTTP request
@@ -14,12 +14,11 @@ Http.send();
 Http.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     const dataArray = JSON.parse(Http.responseText);
-  
+    // console.log(dataArray);
     //iterate through json items and populate images on page
     let i;
-    for (i = 0; i < dataArray.length; i++) {
-
-      document.getElementById(`popup-link-${i+1}`).href = "#popup-img";
+    const length = 10; // we only want 10 images
+    for (i = 0; i < length; i++) {
 
       if (dataArray[i]['media_type'] === "video") {
         document.getElementById(`img--${i+1}`).src = "video-img.png";
@@ -37,10 +36,10 @@ Http.onreadystatechange = function() {
     const date = document.getElementById('date');
     const explanation = document.getElementById('explanation');
 
-    for (let i = 0; i < images.length; i++) {
+    for (let i = 0; i < length; i++) {
       images[i].addEventListener("click", function() {
         //images are displayed in reverse date order, so need to make up for this
-        let x = images.length-i-1;
+        let x = length-i-1;
         if (dataArray[x]['media_type'] === "video") {
           popImg.style.display = "none";
           popVid.style.display = "block";

@@ -3,7 +3,7 @@ const year = sevenDaysAgo.getFullYear();
 const month = sevenDaysAgo.getMonth() + 1;
 const day = sevenDaysAgo.getDate();
 const startDate = `${year}-${month}-${day}`;
-const apiKey = "eTA0IfKg7oy8Cx41GHeAsA1fc6ep4t2nkyMBgisM";
+const apiKey = <<insert your API KEY here>>;
 const url = `https://api.nasa.gov/planetary/apod?start_date=${startDate}&api_key=${apiKey}`;
 
 // HTTP request
